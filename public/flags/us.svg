@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30">
+  <clipPath id="us-c"><rect width="60" height="30"/></clipPath>
+  <g clip-path="url(#us-c)">
+    <rect width="60" height="30" fill="#bf0a30"/>
+    <path d="M0,3.46h60M0,10.38h60M0,17.31h60M0,24.23h60" stroke="#fff" stroke-width="2.31"/>
+    <rect width="24" height="16.15" fill="#002868"/>
+    <g fill="#fff">
+      <g id="us-s5"><g id="us-s"><polygon points="1.2,0.4 1.46,1.2 2.31,1.2 1.62,1.69 1.88,2.5 1.2,2 0.52,2.5 0.78,1.69 0.09,1.2 0.94,1.2"/></g><use href="#us-s" x="2.4"/><use href="#us-s" x="4.8"/><use href="#us-s" x="7.2"/><use href="#us-s" x="9.6"/><use href="#us-s" x="12"/></g>
+      <g id="us-s4"><use href="#us-s" x="1.2" y="1.6"/><use href="#us-s" x="3.6" y="1.6"/><use href="#us-s" x="6" y="1.6"/><use href="#us-s" x="8.4" y="1.6"/><use href="#us-s" x="10.8" y="1.6"/></g>
+      <use href="#us-s5" y="3.2"/>
+      <use href="#us-s4" y="3.2"/>
+      <use href="#us-s5" y="6.4"/>
+      <use href="#us-s4" y="6.4"/>
+      <use href="#us-s5" y="9.6"/>
+      <use href="#us-s4" y="9.6"/>
+      <use href="#us-s5" y="12.8"/>
+    </g>
+  </g>
+</svg>

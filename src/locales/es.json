@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "about": "Sobre nosotros",
+    "language": "Idioma",
+    "menu": "Menú",
+    "english": "Inglés",
+    "spanish": "Español"
+  },
+  "loader": {
+    "title": "Dayana Media",
+    "subtitle": "Cargando experiencia"
+  },
+  "hero": {
+    "header": "Media",
+    "roles": ["Compradora", "Traficante", "Analista", "Crecimiento"]
+  },
+  "services": {
+    "flexible": "Flexible",
+    "affordable": "Accesible",
+    "crm": "CRM",
+    "ctaTitle": "Llamada de Estrategia",
+    "ctaSubtitle": "Sin costo, sin presión",
+    "ctaButton": "Reservar llamada",
+    "info": "Revisaremos tu situación actual e identificaremos oportunidades para aumentar el flujo de clientes.",
+    "infoLabel": "Más información"
+  },
+  "growth": {
+    "title": "Hablemos de crecimiento",
+    "privacy": "Toda la información se mantiene privada y se usa solo para entender las necesidades de tu negocio",
+    "privacyLabel": "Aviso de privacidad",
+    "intro": "Antes de enviar, asegúrate de que:",
+    "bullets": [
+      "Eres el dueño del negocio o el que toma decisiones",
+      "Buscas conseguir más clientes o mejorar tus anuncios",
+      "Estás listo para invertir en hacer crecer tu negocio"
+    ]
+  },
+  "form": {
+    "title": "Hablemos",
+    "subtitle": "Cuéntanos sobre tu negocio y tus objetivos",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "social": "Red social",
+    "message": "Tu mensaje",
+    "messagePlaceholder": "Cuéntanos un poco sobre tu negocio y lo que buscas…",
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando…",
+    "success": "Mensaje enviado — te contactaremos pronto.",
+    "error": "Algo salió mal. Inténtalo de nuevo o escríbenos directamente.",
+    "required": "Requerido",
+    "invalidEmail": "Ingresa un correo válido"
+  },
+  "footer": {
+    "foundation": "Fundación",
+    "contact": "Contacto",
+    "mission": "Misión",
+    "services": "Servicios",
+    "rights": "Todos los derechos reservados.",
+    "comingSoon": "Próximamente",
+    "comingSoonBody": "Esta sección aún no está disponible. Vuelve pronto.",
+    "close": "Cerrar"
+  },
+  "calendly": {
+    "label": "Agendar una llamada"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "contact": "Contact",
+    "about": "About",
+    "language": "Language",
+    "menu": "Menu",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "loader": {
+    "title": "Dayana Media",
+    "subtitle": "Loading experience"
+  },
+  "hero": {
+    "header": "Media",
+    "roles": ["Buyer", "Trafficker", "Analyst", "Growth"]
+  },
+  "services": {
+    "flexible": "Flexible",
+    "affordable": "Affordable",
+    "crm": "CRM",
+    "ctaTitle": "Growth Strategy Call",
+    "ctaSubtitle": "No cost, no pressure",
+    "ctaButton": "Book a call",
+    "info": "We'll go over your current situation and identify opportunities to increase your client flow.",
+    "infoLabel": "More info"
+  },
+  "growth": {
+    "title": "Let's talk growth",
+    "privacy": "All information is kept private and used only to understand your business needs",
+    "privacyLabel": "Privacy notice",
+    "intro": "Before submitting, make sure:",
+    "bullets": [
+      "You're the business owner or decision-maker",
+      "You're looking to get more clients or improve your ads",
+      "You're ready to invest in growing your business"
+    ]
+  },
+  "form": {
+    "title": "Get in touch",
+    "subtitle": "Tell us about your business and goals",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "social": "Social media handle",
+    "message": "Your message",
+    "messagePlaceholder": "Tell us a bit about your business and what you're looking for…",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "success": "Message sent — we'll be in touch soon.",
+    "error": "Something went wrong. Please try again or email us directly.",
+    "required": "Required",
+    "invalidEmail": "Please enter a valid email"
+  },
+  "footer": {
+    "foundation": "Foundation",
+    "contact": "Contact",
+    "mission": "Mission",
+    "services": "Services",
+    "rights": "All rights reserved.",
+    "comingSoon": "Coming soon",
+    "comingSoonBody": "This section isn't available yet. Check back soon.",
+    "close": "Close"
+  },
+  "calendly": {
+    "label": "Schedule a call"
+  }
+}
