@@ -8,6 +8,8 @@ interface NavbarProps {
   onHomeClick: () => void;
 }
 
+const BASE = import.meta.env.BASE_URL;
+
 export default function Navbar({
   onContactClick,
   onServicesClick,
@@ -54,7 +56,7 @@ export default function Navbar({
             aria-label={t("nav.spanish")}
             title={t("nav.spanish")}
           >
-            <img src="/flags/es.svg" alt="" />
+            <img src={`${BASE}flags/es.svg`} alt="" />
           </button>
           <button
             type="button"
@@ -65,7 +67,7 @@ export default function Navbar({
             aria-label={t("nav.english")}
             title={t("nav.english")}
           >
-            <img src="/flags/us.svg" alt="" />
+            <img src={`${BASE}flags/us.svg`} alt="" />
           </button>
 
           <button
