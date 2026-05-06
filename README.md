@@ -77,3 +77,43 @@ npm run preview  # preview the production build locally
 ```
 
 The build output goes to `dist/` and can be deployed to any static host (Vercel, Netlify, GitHub Pages, Cloudflare Pages, etc.).
+
+## Deploy to GitHub Pages
+
+This repo includes a GitHub Actions workflow ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) that auto-deploys to GitHub Pages on every push to `main`.
+
+### One-time setup
+
+1. **Push the repo to GitHub.** From the project root:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/dayana-web.git
+   git push -u origin main
+   ```
+
+2. **Enable GitHub Pages.** Repo → **Settings → Pages → Source = "GitHub Actions"**.
+
+3. **Add EmailJS + Calendly secrets.** Repo → **Settings → Secrets and variables → Actions → New repository secret**. Add the same four values you have in your local `.env`:
+   - `VITE_EMAILJS_SERVICE_ID`
+   - `VITE_EMAILJS_TEMPLATE_ID`
+   - `VITE_EMAILJS_PUBLIC_KEY`
+   - `VITE_CALENDLY_URL`
+
+4. **Lock down EmailJS to your domain (recommended).** EmailJS Dashboard → Account → Security → enable "Allow EmailJS to be used from these websites only" and add your GitHub Pages URL (`https://<your-username>.github.io`).
+
+### After setup
+
+Every `git push` to `main` triggers a rebuild. The site will be live at:
+
+```
+https://<your-username>.github.io/dayana-web/
+```
+
+The first deploy takes 1–2 minutes. Watch progress in the **Actions** tab of the repo.
+
+### If you change the repo name
+
+Update the `base` path in [vite.config.ts](vite.config.ts) to match: `base: "/<new-name>/"`.
