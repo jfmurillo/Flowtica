@@ -26,6 +26,7 @@ const ContactForm = forwardRef<HTMLElement>((_, ref) => {
   const { t } = useTranslation();
   const [data, setData] = useState<FormData>(initial);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -56,6 +57,14 @@ const ContactForm = forwardRef<HTMLElement>((_, ref) => {
     if (!validate()) return;
 
     setStatus("submitting");
+
+    if (honeypot) {
+      // Bot caught — fake success so they don't retry, and don't hit EmailJS.
+      await new Promise((r) => setTimeout(r, 900));
+      setStatus("success");
+      setData(initial);
+      return;
+    }
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as
       | string
@@ -113,6 +122,28 @@ const ContactForm = forwardRef<HTMLElement>((_, ref) => {
       >
         <h2 className="form__title">{t("form.title")}</h2>
         <p className="form__sub">{t("form.subtitle")}</p>
+
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: 1,
+            height: 1,
+            overflow: "hidden",
+          }}
+        >
+          <label htmlFor="website">Website</label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
+        </div>
 
         <div className="form__row">
           <div className={`field ${errors.firstName ? "field--error" : ""}`}>

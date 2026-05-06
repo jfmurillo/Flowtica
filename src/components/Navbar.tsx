@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ThemeToggle from "./ThemeToggle";
+import { useDialog } from "../hooks/useDialog";
 
 interface NavbarProps {
   onContactClick: () => void;
@@ -18,6 +19,17 @@ export default function Navbar({
 }: NavbarProps) {
   const { t, i18n } = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const closeDrawer = useCallback(() => setDrawerOpen(false), []);
+  const drawerRef = useDialog<HTMLElement>(drawerOpen, closeDrawer);
+  const navTimeout = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (navTimeout.current !== null) {
+        window.clearTimeout(navTimeout.current);
+      }
+    };
+  }, []);
 
   const switchLang = (lng: "en" | "es") => {
     void i18n.changeLanguage(lng);
@@ -25,7 +37,13 @@ export default function Navbar({
 
   const handleNav = (action: () => void) => {
     setDrawerOpen(false);
-    setTimeout(action, 200);
+    if (navTimeout.current !== null) {
+      window.clearTimeout(navTimeout.current);
+    }
+    navTimeout.current = window.setTimeout(() => {
+      navTimeout.current = null;
+      action();
+    }, 200);
   };
 
   const currentLang = i18n.resolvedLanguage ?? i18n.language;
@@ -98,6 +116,7 @@ export default function Navbar({
               onClick={() => setDrawerOpen(false)}
             />
             <motion.aside
+              ref={drawerRef}
               key="drawer"
               className="drawer"
               initial={{ x: "100%" }}
@@ -106,6 +125,7 @@ export default function Navbar({
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               role="dialog"
               aria-modal="true"
+              aria-label={t("nav.menu")}
             >
               <div className="drawer__header">
                 <span className="drawer__title">{t("nav.menu")}</span>
