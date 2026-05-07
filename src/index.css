@@ -1139,7 +1139,6 @@ select {
 
 @media (max-width: 880px) {
   .steps__row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .step__connector { display: none; }
 }
 
 @media (max-width: 520px) {
@@ -1206,23 +1205,32 @@ select {
   max-width: 220px;
 }
 
-/* Dotted path connector between steps (overlaid on the icon-row baseline) */
-.step__connector {
+/* Static dotted path that runs across the steps row at the height of the
+   numbered circles. Rendered as a single non-animated element so it is
+   visible all the time, regardless of the steps' enter animations. */
+.steps__row { position: relative; }
+
+.steps__path {
   position: absolute;
   top: 18px;
-  right: calc(-50% + 28px);
-  width: calc(100% - 56px);
+  left: 12.5%;
+  right: 12.5%;
   height: 6px;
   background-image: radial-gradient(circle, var(--brand) 1.4px, transparent 1.7px);
   background-size: 10px 6px;
   background-repeat: repeat-x;
   background-position: left center;
   opacity: 0.55;
-  z-index: -1;
   pointer-events: none;
+  z-index: 0;
 }
 
-.step:last-child .step__connector { display: none; }
+@media (max-width: 880px) {
+  .steps__path { display: none; }
+}
+
+/* Step content sits above the dotted path */
+.step { z-index: 1; }
 
 /* Foundation steps variant — 6 cards each in a bordered tile */
 .steps--cards .steps__row {

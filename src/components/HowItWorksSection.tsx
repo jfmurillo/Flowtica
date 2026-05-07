@@ -28,6 +28,11 @@ export default function HowItWorksSection() {
         </div>
 
         <div className="steps__row">
+          {/* Static dotted path linking the numbered circles. Sits behind
+              the steps so it is visible at all times and does not animate
+              in with them. */}
+          <div className="steps__path" aria-hidden="true" />
+
           {steps.map((step, i) => {
             const Icon = icons[i] ?? SearchIcon;
             return (
@@ -47,7 +52,6 @@ export default function HowItWorksSection() {
                 </div>
                 <h4 className="step__title">{step.title}</h4>
                 <p className="step__body">{step.body}</p>
-                <span className="step__connector" aria-hidden="true" />
               </motion.div>
             );
           })}
