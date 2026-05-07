@@ -10,7 +10,8 @@
       // bootstrap snippet in index.html below decodes the path back.
       (function () {
         var l = window.location;
-        var segmentCount = 1; // "/dayana-web/" → 1 segment to keep
+        // Project site: keep "/<repo>/". User site (repo = user.github.io): use 0.
+        var segmentCount = 1;
         var path =
           l.pathname
             .split("/")

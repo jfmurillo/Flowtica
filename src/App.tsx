@@ -80,9 +80,9 @@ function AppShell() {
   );
 }
 
-// Vite's BASE_URL is "/" in dev and "/dayana-web/" (or whatever sub-path)
+// Vite's BASE_URL is "/" in dev and "/<repo>/" (or "/" for username.github.io)
 // when deployed to GitHub Pages. Strip the trailing slash so BrowserRouter
-// receives a clean basename like "/dayana-web".
+// receives a clean basename.
 const ROUTER_BASENAME = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 export default function App() {

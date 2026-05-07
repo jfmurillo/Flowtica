@@ -107,7 +107,9 @@ This repo includes a GitHub Actions workflow ([.github/workflows/deploy.yml](.gi
    git push -u origin main
    ```
 
-2. **Enable GitHub Pages.** Repo → **Settings → Pages → Source = "GitHub Actions"**.
+2. **Enable GitHub Pages.** Repo → **Settings → Pages → Build and deployment → Source = "GitHub Actions"**.
+
+   If Source is set to **Deploy from a branch** (e.g. `/ (root)`), GitHub serves your raw repo files. The browser then loads `/src/main.tsx` from `index.html` and gets **404** — that path only exists during `npm run dev`. You must use **GitHub Actions** so the workflow uploads the Vite **`dist/`** build (see [.github/workflows/deploy.yml](.github/workflows/deploy.yml)).
 
 3. **Add EmailJS + Calendly secrets.** Repo → **Settings → Secrets and variables → Actions → New repository secret**:
    - `VITE_EMAILJS_SERVICE_ID`
@@ -119,6 +121,8 @@ This repo includes a GitHub Actions workflow ([.github/workflows/deploy.yml](.gi
 
 ### If you change the repo name
 
-Update the `base` path in [vite.config.ts](vite.config.ts) to match: `base: "/<new-name>/"`.
+No manual edit is required in CI: the build reads `GITHUB_REPOSITORY` and sets Vite `base` to `/<repo>/` for project sites, or `/` for a `username.github.io` user-site repo. For a **local** production build aimed at a project site, set `VITE_GH_PAGES_BASE`, for example:
+
+`VITE_DEPLOY_TARGET=gh-pages VITE_GH_PAGES_BASE=/my-repo/ npm run build`
 
 > ⚠️ **Note about routing on GitHub Pages.** Because Flowtica uses client-side routing, you may need a 404 fallback to make `/foundation` and `/mission` reload correctly when accessed directly. The standard fix is to add a `public/404.html` that redirects to `index.html`, or switch to a hash-based router if direct deep links matter.
