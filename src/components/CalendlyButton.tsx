@@ -1,23 +1,16 @@
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useCalendlyUrl } from "../hooks/useCalendly";
 
 export default function CalendlyButton() {
   const { t } = useTranslation();
-  const url =
-    (import.meta.env.VITE_CALENDLY_URL as string | undefined) ??
-    "https://calendly.com/placeholder";
+  const url = useCalendlyUrl();
 
   return (
-    <motion.a
+    <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
       className="calendly-fab"
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay: 1.4, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.06 }}
-      whileTap={{ scale: 0.94 }}
       aria-label={t("calendly.label")}
       title={t("calendly.label")}
     >
@@ -34,6 +27,6 @@ export default function CalendlyButton() {
         />
         <circle cx="22" cy="11" r="2" fill="#fff" />
       </svg>
-    </motion.a>
+    </a>
   );
 }

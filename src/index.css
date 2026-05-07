@@ -429,6 +429,42 @@ select {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
+}
+
+/* The primary CTA in the navbar is wide (especially in Spanish).
+   Hide it below the nav-links breakpoint — the same CTA is in the burger
+   drawer — so flags, theme toggle, and burger always stay on-screen. */
+@media (max-width: 880px) {
+  .nav__cta-lg {
+    display: none !important;
+  }
+
+  .nav {
+    gap: 10px;
+    padding: 12px max(14px, env(safe-area-inset-right, 0px)) 12px
+      max(14px, env(safe-area-inset-left, 0px));
+    flex-wrap: nowrap;
+  }
+
+  .nav__brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: min(148px, 40vw);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 18px;
+  }
+
+  .nav__right {
+    gap: 8px;
+  }
+
+  .flag-btn,
+  .icon-btn {
+    flex-shrink: 0;
+  }
 }
 
 .btn {
@@ -629,6 +665,29 @@ select {
   border: 1px solid var(--line);
   font-size: 20px;
   line-height: 1;
+}
+
+.drawer__toolbar {
+  padding-bottom: 18px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer__toolbar-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.drawer__toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .drawer__nav {
@@ -1891,9 +1950,9 @@ select {
 
 .calendly-fab {
   position: fixed;
-  left: 24px;
-  bottom: 24px;
-  z-index: 50;
+  left: max(24px, env(safe-area-inset-left, 0px));
+  bottom: max(24px, env(safe-area-inset-bottom, 0px));
+  z-index: 65;
   width: 56px;
   height: 56px;
   display: inline-flex;
@@ -1906,6 +1965,9 @@ select {
     0 18px 40px -12px rgba(0, 107, 255, 0.4),
     0 0 0 1px rgba(0, 107, 255, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .calendly-fab:hover {

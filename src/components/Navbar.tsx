@@ -41,7 +41,10 @@ export default function Navbar({
     setTimeout(() => onServicesClick(), 60);
   };
 
-  const currentLang = i18n.resolvedLanguage ?? i18n.language;
+  // Normalize so en-US / es-MX match "en" / "es" for flag highlighting.
+  const langPrefix =
+    ((i18n.resolvedLanguage ?? i18n.language ?? "en").split("-")[0] ||
+      "en").toLowerCase();
 
   return (
     <>
@@ -94,7 +97,7 @@ export default function Navbar({
             href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn--primary"
+            className="btn btn--primary nav__cta-lg"
           >
             {t("nav.cta")}
             <ArrowUpRightIcon className="btn__arrow" width={16} height={16} />
@@ -103,7 +106,7 @@ export default function Navbar({
           <button
             type="button"
             className={`flag-btn ${
-              currentLang === "es" ? "flag-btn--active" : ""
+              langPrefix === "es" ? "flag-btn--active" : ""
             }`}
             onClick={() => switchLang("es")}
             aria-label={t("nav.spanish")}
@@ -114,7 +117,7 @@ export default function Navbar({
           <button
             type="button"
             className={`flag-btn ${
-              currentLang === "en" ? "flag-btn--active" : ""
+              langPrefix === "en" ? "flag-btn--active" : ""
             }`}
             onClick={() => switchLang("en")}
             aria-label={t("nav.english")}
@@ -169,6 +172,33 @@ export default function Navbar({
                 >
                   <CloseIcon width={16} height={16} />
                 </button>
+              </div>
+
+              <div className="drawer__toolbar">
+                <span className="drawer__toolbar-label">{t("nav.language")}</span>
+                <div className="drawer__toolbar-row">
+                  <button
+                    type="button"
+                    className={`flag-btn ${
+                      langPrefix === "es" ? "flag-btn--active" : ""
+                    }`}
+                    onClick={() => switchLang("es")}
+                    aria-label={t("nav.spanish")}
+                  >
+                    <img src={`${BASE}flags/es.svg`} alt="" />
+                  </button>
+                  <button
+                    type="button"
+                    className={`flag-btn ${
+                      langPrefix === "en" ? "flag-btn--active" : ""
+                    }`}
+                    onClick={() => switchLang("en")}
+                    aria-label={t("nav.english")}
+                  >
+                    <img src={`${BASE}flags/gb.svg`} alt="" />
+                  </button>
+                  <ThemeToggle />
+                </div>
               </div>
 
               <nav className="drawer__nav">
