@@ -2,7 +2,8 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { LinkedInIcon, InstagramIcon, MailIcon } from "./Icons";
+// TODO: re-enable when social accounts are ready
+// import { LinkedInIcon, InstagramIcon, MailIcon } from "./Icons";
 
 interface FooterProps {
   onContactClick: () => void;
@@ -55,6 +56,7 @@ export default function Footer({ onContactClick, onServicesClick }: FooterProps)
           </button>
         </nav>
 
+        {/* TODO: social links — re-enable when accounts are ready
         <div className="footer__socials">
           <a
             href="https://www.linkedin.com/"
@@ -85,6 +87,7 @@ export default function Footer({ onContactClick, onServicesClick }: FooterProps)
             <MailIcon />
           </a>
         </div>
+        */}
       </div>
 
       <div className="footer__bar">
