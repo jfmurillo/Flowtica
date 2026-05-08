@@ -16,11 +16,11 @@ const HomePage = forwardRef<HTMLElement, HomePageProps>(
       <>
         <div className="sky">
           <HeroSection ref={heroRef} />
-          <ServicesSection ref={servicesRef} />
+          <ServicesSection />
         </div>
 
         <ComparisonSection />
-        <HowItWorksSection />
+        <HowItWorksSection ref={servicesRef} />
         <ContactForm ref={contactRef} />
       </>
     );
