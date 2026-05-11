@@ -65,7 +65,9 @@ const HeroSection = forwardRef<HTMLElement>((_, ref) => {
                       text={role}
                       speed={80}
                       initialDelay={600}
-                      loop={false}
+                      loop={true}
+                      waitTime={1500}
+                      deleteSpeed={50}
                       showCursor={true}
                       cursorChar="|"
                       cursorClassName=""
