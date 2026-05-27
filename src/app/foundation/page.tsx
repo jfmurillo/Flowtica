@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import FoundationPage from "../../pages/FoundationPage";
+import FoundationPage from "../../views/FoundationPage";
 
 export const metadata: Metadata = {
   title: "Foundation",

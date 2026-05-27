@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HomePageClient from "../pages/HomePage";
+import HomePageClient from "../views/HomePage";
 
 export const metadata: Metadata = {
   title: "Flowtica — Media & Growth",

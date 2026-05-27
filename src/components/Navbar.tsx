@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import { ArrowUpRightIcon, CloseIcon } from "./Icons";
@@ -95,7 +96,7 @@ export default function Navbar() {
             aria-label={t("nav.spanish")}
             title={t("nav.spanish")}
           >
-            <img src="/flags/es.svg" alt="" />
+            <Image src="/flags/es.svg" alt="" width={20} height={15} />
           </button>
           <button
             type="button"
@@ -106,7 +107,7 @@ export default function Navbar() {
             aria-label={t("nav.english")}
             title={t("nav.english")}
           >
-            <img src="/flags/gb.svg" alt="" />
+            <Image src="/flags/gb.svg" alt="" width={20} height={15} />
           </button>
 
           <ThemeToggle />
@@ -168,7 +169,7 @@ export default function Navbar() {
                     onClick={() => switchLang("es")}
                     aria-label={t("nav.spanish")}
                   >
-                    <img src="/flags/es.svg" alt="" />
+                    <Image src="/flags/es.svg" alt="" width={20} height={15} />
                   </button>
                   <button
                     type="button"
@@ -178,7 +179,7 @@ export default function Navbar() {
                     onClick={() => switchLang("en")}
                     aria-label={t("nav.english")}
                   >
-                    <img src="/flags/gb.svg" alt="" />
+                    <Image src="/flags/gb.svg" alt="" width={20} height={15} />
                   </button>
                   <ThemeToggle />
                 </div>

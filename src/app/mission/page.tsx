@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MissionPage from "../../pages/MissionPage";
+import MissionPage from "../../views/MissionPage";
 
 export const metadata: Metadata = {
   title: "Mission",
