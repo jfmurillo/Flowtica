@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+"use client";
+
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -26,12 +27,12 @@ const wordVariants: Variants = {
   },
 };
 
-const HeroSection = forwardRef<HTMLElement>((_, ref) => {
+export default function HeroSection() {
   const { t, i18n } = useTranslation();
   const roles = t("hero.roles", { returnObjects: true }) as string[];
 
   return (
-    <section className="hero" ref={ref} id="hero">
+    <section className="hero" id="hero">
       <div className="hero__inner">
         <motion.h1
           className="hero__title"
@@ -92,8 +93,4 @@ const HeroSection = forwardRef<HTMLElement>((_, ref) => {
       </div>
     </section>
   );
-});
-
-HeroSection.displayName = "HeroSection";
-
-export default HeroSection;
+}

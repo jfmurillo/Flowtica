@@ -1,24 +1,18 @@
+"use client";
+
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { NavLink, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import { ArrowUpRightIcon, CloseIcon } from "./Icons";
 import { useCalendlyUrl } from "../hooks/useCalendly";
 
-const BASE = import.meta.env.BASE_URL;
-
-interface NavbarProps {
-  onContactClick: () => void;
-  onServicesClick: () => void;
-}
-
-export default function Navbar({
-  onContactClick,
-  onServicesClick,
-}: NavbarProps) {
+export default function Navbar() {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const calendlyUrl = useCalendlyUrl();
 
@@ -26,20 +20,13 @@ export default function Navbar({
     void i18n.changeLanguage(lng);
   };
 
-  const handleNav = (action: () => void) => {
+  const handleNav = (href: string) => {
     setDrawerOpen(false);
-    setTimeout(action, 200);
+    setTimeout(() => router.push(href), 200);
   };
 
-  const goHomeAndScrollToContact = () => {
-    navigate("/");
-    setTimeout(() => onContactClick(), 60);
-  };
-
-  const goHomeAndScrollToServices = () => {
-    navigate("/");
-    setTimeout(() => onServicesClick(), 60);
-  };
+  const goHomeAndScrollToContact = () => router.push("/#contact");
+  const goHomeAndScrollToServices = () => router.push("/#how-it-works");
 
   // Normalize so en-US / es-MX match "en" / "es" for flag highlighting.
   const langPrefix =
@@ -54,20 +41,18 @@ export default function Navbar({
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        <NavLink to="/" className="nav__brand" aria-label={t("brand")}>
+        <Link href="/" className="nav__brand" aria-label={t("brand")}>
           {t("brand")}
           <span className="dot">.</span>
-        </NavLink>
+        </Link>
 
         <div className="nav__links">
-          <NavLink
-            to="/foundation"
-            className={({ isActive }) =>
-              `nav__link ${isActive ? "nav__link--active" : ""}`
-            }
+          <Link
+            href="/foundation"
+            className={`nav__link ${pathname === "/foundation" ? "nav__link--active" : ""}`}
           >
             {t("nav.foundation")}
-          </NavLink>
+          </Link>
           <button
             type="button"
             className="nav__link"
@@ -75,14 +60,12 @@ export default function Navbar({
           >
             {t("nav.contact")}
           </button>
-          <NavLink
-            to="/mission"
-            className={({ isActive }) =>
-              `nav__link ${isActive ? "nav__link--active" : ""}`
-            }
+          <Link
+            href="/mission"
+            className={`nav__link ${pathname === "/mission" ? "nav__link--active" : ""}`}
           >
             {t("nav.mission")}
-          </NavLink>
+          </Link>
           <button
             type="button"
             className="nav__link"
@@ -112,7 +95,7 @@ export default function Navbar({
             aria-label={t("nav.spanish")}
             title={t("nav.spanish")}
           >
-            <img src={`${BASE}flags/es.svg`} alt="" />
+            <img src="/flags/es.svg" alt="" />
           </button>
           <button
             type="button"
@@ -123,7 +106,7 @@ export default function Navbar({
             aria-label={t("nav.english")}
             title={t("nav.english")}
           >
-            <img src={`${BASE}flags/gb.svg`} alt="" />
+            <img src="/flags/gb.svg" alt="" />
           </button>
 
           <ThemeToggle />
@@ -185,7 +168,7 @@ export default function Navbar({
                     onClick={() => switchLang("es")}
                     aria-label={t("nav.spanish")}
                   >
-                    <img src={`${BASE}flags/es.svg`} alt="" />
+                    <img src="/flags/es.svg" alt="" />
                   </button>
                   <button
                     type="button"
@@ -195,7 +178,7 @@ export default function Navbar({
                     onClick={() => switchLang("en")}
                     aria-label={t("nav.english")}
                   >
-                    <img src={`${BASE}flags/gb.svg`} alt="" />
+                    <img src="/flags/gb.svg" alt="" />
                   </button>
                   <ThemeToggle />
                 </div>
@@ -205,35 +188,35 @@ export default function Navbar({
                 <button
                   type="button"
                   className="drawer__link"
-                  onClick={() => handleNav(() => navigate("/"))}
+                  onClick={() => handleNav("/")}
                 >
                   {t("nav.home")}
                 </button>
                 <button
                   type="button"
                   className="drawer__link"
-                  onClick={() => handleNav(() => navigate("/foundation"))}
+                  onClick={() => handleNav("/foundation")}
                 >
                   {t("nav.foundation")}
                 </button>
                 <button
                   type="button"
                   className="drawer__link"
-                  onClick={() => handleNav(goHomeAndScrollToServices)}
+                  onClick={() => handleNav("/#how-it-works")}
                 >
                   {t("nav.services")}
                 </button>
                 <button
                   type="button"
                   className="drawer__link"
-                  onClick={() => handleNav(() => navigate("/mission"))}
+                  onClick={() => handleNav("/mission")}
                 >
                   {t("nav.mission")}
                 </button>
                 <button
                   type="button"
                   className="drawer__link"
-                  onClick={() => handleNav(goHomeAndScrollToContact)}
+                  onClick={() => handleNav("/#contact")}
                 >
                   {t("nav.contact")}
                 </button>

@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+"use client";
+
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,13 +16,13 @@ interface Step {
   body: string;
 }
 
-const HowItWorksSection = forwardRef<HTMLElement, object>((_, ref) => {
+export default function HowItWorksSection() {
   const { t } = useTranslation();
   const steps = t("howItWorks.steps", { returnObjects: true }) as Step[];
   const icons = [SearchIcon, TargetIcon, PlayIcon, TrendUpIcon];
 
   return (
-    <section ref={ref} className="section section--tight steps" id="how-it-works">
+    <section className="section section--tight steps" id="how-it-works">
       <div className="container">
         <div className="steps__head">
           <span className="kicker">{t("howItWorks.kicker")}</span>
@@ -60,8 +61,4 @@ const HowItWorksSection = forwardRef<HTMLElement, object>((_, ref) => {
       </div>
     </section>
   );
-});
-
-HowItWorksSection.displayName = "HowItWorksSection";
-
-export default HowItWorksSection;
+}

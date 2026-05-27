@@ -1,31 +1,22 @@
+"use client";
+
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 // TODO: re-enable when social accounts are ready
 // import { LinkedInIcon, InstagramIcon, MailIcon } from "./Icons";
 
-interface FooterProps {
-  onContactClick: () => void;
-  onServicesClick: () => void;
-}
-
 type ModalKey = "comingSoon" | null;
 
-export default function Footer({ onContactClick, onServicesClick }: FooterProps) {
+export default function Footer() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [modal, setModal] = useState<ModalKey>(null);
 
-  const goHomeAndScrollToContact = () => {
-    navigate("/");
-    setTimeout(() => onContactClick(), 60);
-  };
-
-  const goHomeAndScrollToServices = () => {
-    navigate("/");
-    setTimeout(() => onServicesClick(), 60);
-  };
+  const goHomeAndScrollToContact = () => router.push("/#contact");
+  const goHomeAndScrollToServices = () => router.push("/#how-it-works");
 
   return (
     <footer className="footer">
@@ -36,13 +27,9 @@ export default function Footer({ onContactClick, onServicesClick }: FooterProps)
         </div>
 
         <nav className="footer__links" aria-label="Footer">
-          <button
-            type="button"
-            className="footer__link"
-            onClick={() => navigate("/foundation")}
-          >
+          <Link href="/foundation" className="footer__link">
             {t("footer.foundation")}
-          </button>
+          </Link>
           <button
             type="button"
             className="footer__link"
@@ -50,13 +37,9 @@ export default function Footer({ onContactClick, onServicesClick }: FooterProps)
           >
             {t("footer.contact")}
           </button>
-          <button
-            type="button"
-            className="footer__link"
-            onClick={() => navigate("/mission")}
-          >
+          <Link href="/mission" className="footer__link">
             {t("footer.mission")}
-          </button>
+          </Link>
           <button
             type="button"
             className="footer__link"

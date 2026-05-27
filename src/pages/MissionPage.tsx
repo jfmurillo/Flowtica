@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+"use client";
+
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { TargetIcon } from "../components/Icons";
@@ -14,10 +15,6 @@ interface Pillar {
 export default function MissionPage() {
   const { t } = useTranslation();
   const pillars = t("mission.pillars", { returnObjects: true }) as Pillar[];
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, []);
 
   return (
     <>

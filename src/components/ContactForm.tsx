@@ -1,4 +1,6 @@
-import { forwardRef, useState } from "react";
+"use client";
+
+import { useState } from "react";
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -31,7 +33,7 @@ const initial: FormData = {
   message: "",
 };
 
-const ContactForm = forwardRef<HTMLElement>((_, ref) => {
+export default function ContactForm() {
   const { t } = useTranslation();
   const [data, setData] = useState<FormData>(initial);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -68,21 +70,15 @@ const ContactForm = forwardRef<HTMLElement>((_, ref) => {
 
     setStatus("submitting");
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as
-      | string
-      | undefined;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as
-      | string
-      | undefined;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as
-      | string
-      | undefined;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
       // Demo mode: simulate a successful submission so the UX can be tested
-      // before EmailJS credentials are wired in via .env.
+      // before EmailJS credentials are wired in via .env.local.
       console.warn(
-        "EmailJS env vars missing — simulating success. Configure VITE_EMAILJS_* in .env to send for real.",
+        "EmailJS env vars missing — simulating success. Configure NEXT_PUBLIC_EMAILJS_* in .env.local to send for real.",
       );
       await new Promise((r) => setTimeout(r, 900));
       setStatus("success");
@@ -113,7 +109,7 @@ const ContactForm = forwardRef<HTMLElement>((_, ref) => {
   };
 
   return (
-    <section className="section section--tight form-section" ref={ref} id="contact">
+    <section className="section section--tight form-section" id="contact">
       <div className="container">
         <motion.div
           className="form-card"
@@ -293,8 +289,4 @@ const ContactForm = forwardRef<HTMLElement>((_, ref) => {
       </div>
     </section>
   );
-});
-
-ContactForm.displayName = "ContactForm";
-
-export default ContactForm;
+}
