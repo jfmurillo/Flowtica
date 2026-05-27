@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+"use client";
+
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import {
@@ -33,10 +34,6 @@ export default function FoundationPage() {
     TrendUpIcon,
     MentorIcon,
   ];
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, []);
 
   return (
     <>

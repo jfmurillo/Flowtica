@@ -1995,3 +1995,6 @@ select {
 }
 
 .collapse-section { overflow: hidden; }
+
+/* next/font injects --font-sans; reassign display font to same variable */
+:root { --font-display: var(--font-sans); }

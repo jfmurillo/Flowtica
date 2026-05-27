@@ -7,7 +7,7 @@ const CALENDLY_URL = "https://calendly.com/dayanamurilloc/30min";
 const PLACEHOLDER_HINTS = ["your-handle", "placeholder"];
 
 export function useCalendlyUrl(): string {
-  const fromEnv = (import.meta.env.VITE_CALENDLY_URL as string | undefined)
+  const fromEnv = (process.env.NEXT_PUBLIC_CALENDLY_URL as string | undefined)
     ?.trim();
 
   if (!fromEnv) return CALENDLY_URL;

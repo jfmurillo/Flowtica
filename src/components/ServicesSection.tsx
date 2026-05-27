@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+"use client";
+
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -16,7 +17,7 @@ const cardVariants: Variants = {
   }),
 };
 
-const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
+export default function ServicesSection() {
   const { t } = useTranslation();
 
   const cards = [
@@ -38,11 +39,7 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
   ];
 
   return (
-    <section
-      className="section section--tight section--svcs"
-      ref={ref}
-      id="services"
-    >
+    <section className="section section--tight section--svcs" id="services">
       <div className="container">
         <div className="svc-grid">
           {cards.map((c, i) => {
@@ -71,8 +68,4 @@ const ServicesSection = forwardRef<HTMLElement>((_, ref) => {
       </div>
     </section>
   );
-});
-
-ServicesSection.displayName = "ServicesSection";
-
-export default ServicesSection;
+}
